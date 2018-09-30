@@ -38,7 +38,9 @@ const createQuery = function(obj){
 	let qList = [];
 	Object.entries(obj).forEach(([key,val]) => {
 		if(val.push === Array.prototype.push){
-			
+			val.forEach(val => {
+				qList.push(`${encodeURIComponent(key)}=${encodeURIComponent(val)}`);
+			});
 		}else{
 			qList.push(`${encodeURIComponent(key)}=${encodeURIComponent(val)}`);
 		}
