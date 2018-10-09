@@ -8,6 +8,7 @@ const deURI = str => decodeURIComponent(str.replace(/\+/g,'%20'));
 /**
  * query string to object
  * @param queryString {String}
+ * @param asList {Boolean}
  */
 const getUrlQuery = function(queryString,asList){
 	if(queryString == null){
