@@ -9,7 +9,7 @@ const deURI = str => decodeURIComponent(str.replace(/\+/g,'%20'));
  * query string to object
  * @param queryString {String}
  */
-const getUrlQuery = function(queryString){
+const getUrlQuery = function(queryString,asList){
 	if(queryString == null){
 		return {};
 	}
@@ -22,7 +22,17 @@ const getUrlQuery = function(queryString){
 	let qObj = {};
 	qList.forEach(q=>{
 		let [qName,...qValue] = q.split('=');
-		qObj[deURI(qName)] = deURI(qValue.join('='));
+		qName = deURI(qName);
+		qValue = deURI(qValue.join('='));
+		if(asList){
+			if(qObj[qName]){
+				qObj[qName].push(qValue);
+			}else{
+				qObj[qName] = [qValue];
+			}
+		}else{
+			qObj[qName] = qValue;
+		}
 	});
 	return qObj;
 };
