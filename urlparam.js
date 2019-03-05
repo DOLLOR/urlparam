@@ -59,6 +59,8 @@ const createQuery = function(obj){
 	return qList.join('&');
 };
 
+export {createQuery,getUrlQuery};
+
 /*
 test
 createQuery({a:1,b:'test123','中文':'测试','<>?,./':'!@#$%^&*()_+'});
