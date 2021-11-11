@@ -61,10 +61,26 @@ const createQuery = function(obj){
 	return qList.join('&');
 };
 
-export {createQuery,getUrlQuery};
+/**
+ * add query to url
+ * @param url string
+ * @param obj 
+ */
+const addQuery = function (url, obj) {
+	let query = createQuery(obj);
+	if (query) {
+		let seperator = url.indexOf('?') >= 0 ? '&' : '?'
+		query = seperator + query
+	}
+	return url + query;
+}
+
+export { createQuery, getUrlQuery, addQuery };
 
 /*
 test
 createQuery({a:1,b:'test123','中文':'测试','<>?,./':'!@#$%^&*()_+'});
 getUrlQuery("a=1&b=test123&%E4%B8%AD%E6%96%87=%E6%B5%8B%E8%AF%95&%3C%3E%3F%2C.%2F=!%40%23%24%25%5E%26*()_%2B");
+addQuery('test',{a:1,b:'test123','中文':'测试','<>?,./':'!@#$%^&*()_+'});
+addQuery('test?x=1',{a:1,b:'test123','中文':'测试','<>?,./':'!@#$%^&*()_+'});
 */
